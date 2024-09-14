@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const dbConnect =async ()=>{
-    await mongoose.connect("mongodb+srv://purv:pr-4@cluster0.oii3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    await mongoose.connect("mongodb://localhost:27017/pr-4")
     console.log("connect to database");
 }
 
