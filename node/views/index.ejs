@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page</title>
+</head>
+
+<body>
+  <div id="users"></div>
+  <form action="/user/postUser" method="post" enctype="multipart/form-data">
+    <input type="text" id="username" name="username" placeholder="name" required>
+    <input type="email" id="email" name="email" placeholder="email" required>
+    <input type="password" id="password" name="password" placeholder="password" required>
+    <input type="file" id="img" name="img" placeholder="img" multiple>
+    <input type="submit" value="submit">
+  </form>
+
+  <script>
+    const mapper = (users) => {
+      users.map((ele) => {
+        let username = document.createElement("h4");
+        username.innerHTML = ele.username;
+        let email = document.createElement("p");
+        email.innerHTML = ele.email;
+
+        let imgContainer = document.createElement("div");
+        
+        ele.img.map((imageSrc) => {
+          let img = document.createElement("img");
+          img.src = `http://localhost:8090/${imageSrc}`;
+          img.style.width = '100px'; 
+          img.style.marginRight = '10px';
+          imgContainer.appendChild(img);
+        });
+
+        let div = document.createElement("div");
+        div.append(username, email, imgContainer);
+
+        document.getElementById("users").appendChild(div);
+      });
+    };
+
+    const fetchUser = async () => {
+      try {
+        let req = await fetch("http://localhost:8090/user/getUser");
+        let res = await req.json();
+        console.log(res);
+        mapper(res);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUser();
+  </script>
+</body>
+
+</html>
