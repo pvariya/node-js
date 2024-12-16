@@ -1,0 +1,63 @@
+:-Features
+    -User Registration/Login: Allow users to create accounts and log in.
+    -Restaurant Listings: Display a list of available restaurants with menus.
+    -Search and Filter: Enable users to search and filter restaurants and dishes based on various criteria (e.g., cuisine type, price range).
+    -Order Customization: Allow users to customize their orders (e.g., add/remove ingredients).
+    -Group Orders: Implement a feature for users to place group orders and split bills.
+    -Real-time Order Tracking: Provide users with real-time updates on their order status and delivery.
+    -Payment Integration: Support multiple payment methods (credit/debit cards, digital wallets).
+    -Ratings and Reviews: Allow users to rate and review restaurants and dishes.
+    -Push Notifications: Notify users about order status, promotions, and new restaurant listings.
+    -User Profile Management: Enable users to manage their profiles, view order history, and save favorite restaurants.
+
+
+:-Models
+    =User Model:
+        -Attributes: id, first_name, last_name, email, password, order_history, favorites.
+    =Restaurant Model:
+        -Attributes: id, name, location, menu, rating, reviews.
+    =Menu Item Model:
+        -Attributes: id, restaurant_id, name, description, price, customization_options.
+    =Order Model:
+        -Attributes: id, user_id, restaurant_id, items, total_price, status, delivery_time.
+
+
+:-Roles and Responsibilities
+    =Users:
+        -Place orders, customize meals, provide feedback, and manage their profiles.
+    =Restaurant Owners:
+        -Manage their restaurant profiles, update menus, and respond to reviews.
+    =Delivery Personnel:
+        -Receive order notifications, track deliveries, and update order statuses.
+    =Admin:
+        -Oversee the platform, manage user accounts, handle disputes, and analyze app performance.
+
+
+:-Build Endpoints
+
+
+    =User Endpoints:
+        -GET /api/v1/users/{id}: Retrieve user details.
+        -PUT /api/v1/users/{id}: Update user information.
+        -DELETE /api/v1/users/{id}: Delete a user account.
+        -POST /api/v1/users: Create a new user.
+
+
+    =Restaurant Endpoints:
+        -POST /api/v1/restaurants: Add a new restaurant.
+        -GET /api/v1/restaurants/{id}: Get details of a specific restaurant.
+        -GET /api/v1/restaurants: List all restaurants.
+
+
+    =Order Endpoints:
+        -GET /api/v1/orders/{id}: Retrieve order details.
+        -PUT /api/v1/orders/{id}: Update order status.
+        -DELETE /api/v1/orders/{id}: Cancel an order.
+        -POST /api/v1/orders: Place a new order.
+
+
+    =Menu Item Endpoints:
+        -POST /api/v1/restaurants/{id}/menu: Add a new menu item.
+        -PUT /api/v1/menu/{id}: Update a menu item.
+        -DELETE /api/v1/menu/{id}: Remove a menu item.
+        -GET /api/v1/restaurants/{id}/menu: Get menu items for a specific restaurant.
